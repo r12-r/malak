@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎉 Happy Birthday Malak 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+ 
+</head>
+<body>
+ 
+  
+  <div class="start-screen" id="startScreen">
+    <h1>🎈 Happy Birthday Malak 🎈</h1>
+    <button class="start-btn" onclick="startExperience()">Tap to celebrate</button>
+  </div>
+
+  <canvas class="fireworks" id="fireworksCanvas"></canvas>
+
+  <div class="main-content" id="mainContent">
+    <h2>🎉 Happy Birthday Malak 🎉</h2>
+    <p>Wishing you joy, magic, and endless happiness <br> I love you my sister 🤍</p>
+    <button class="gift-btn" onclick="showGift()">🎁 Open Your Gift</button>
+
+    <div class="gift-box" id="giftBox">
+      💌 You are cherished and celebrated today and always <br><br>
+      <div>
+        <img src="43352.png" width="100" height="150">
+         <p>
+           On your special day, I just want to say how grateful I am to know someone as kind, bright, and beautiful as you. </p>
+        <p>May your year be filled with laughter, love, and everything that makes you smile.</p>
+
+        <p>With all my best wishes.
+         </p>
+        
+         <br>
+         <h3>
+           Your Best Sound 😓
+         </h3>
+         <br>
+
+            <audio controls>
+              <source src="0726.MP3" type="audio/mpeg">
+            </audio>
+      </div>
+      <div class="footer">— dont for get me, from Rodwankorri 🤍</div>
+    </div>
+   
+  
+    
+
+  <script>
+
+    const startScreen = document.getElementById('startScreen');
+    const mainContent = document.getElementById('mainContent');
+    const fireworks = document.getElementById('fireworksCanvas');
+    const ctx = fireworks.getContext('2d');
+    fireworks.width = window.innerWidth;
+    fireworks.height = window.innerHeight;
+
+    let particles = [];
+
+    function startExperience() {
+      startScreen.style.opacity = 50;
+      setTimeout(() => {
+        startScreen.style.display = 'none';
+        mainContent.style.display = 'block';
+      }, 1000);
+    }
+
+    function showGift() {
+      document.getElementById('giftBox').style.display = 'block';
+      launchFireworks();
+    }
+
+    function launchFireworks() {
+      fireworks.style.display = 'block';
+      for (let i = 0; i < 100; i++) {
+        particles.push({
+          x: fireworks.width / 2,
+          y: fireworks.height / 2,
+          radius: Math.random() * 3 + 2,
+          color: `hsl(${Math.random() * 360}, 100%, 70%)`,
+          speedX: (Math.random() - 0.5) * 20,
+          speedY: (Math.random() - 0.5) * 20,
+          life: 100
+        });
+      }
+      animate();
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, fireworks.width, fireworks.height);
+      particles.forEach((p, i) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.life--;
+        if (p.life <= 0) particles.splice(i, 1);
+      });
+      if (particles.length > 0) {
+        requestAnimationFrame(animate);
+      } else {
+        fireworks.style.display = 'none';
+      }
+    }
+
+  </script>
+
+    <center><dev id="dev-copy">
+    <p> All CopyRight To Rodwankorri - 2025 </p>
+     </center>
+
+     
+</body>
+</html>
